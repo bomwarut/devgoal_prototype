@@ -1,0 +1,240 @@
+<!-- <%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>สร้างแบบฟอร์มการประเมิน</title>
+  <meta name="theme-color" content="hsl(24.3, 97.4%, 54.3%)">
+  <link href=../image/devgoallogo.png" size="48x48" rel="shortcut icon"  type="image/png"/>
+  <link rel="stylesheet" href="../stylecss/style_user.css">
+<script type="text/javascript" src="https://unpkg.com/htmlincludejs"></script>
+<!-- MDB -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.js"></script>
+</head>
+
+<body>
+  <main>  
+        <!-- loader -->
+        <div class="ring">DEVGOAL<span class="loading"></span></div> 
+        <!-- import navbarและsidebarเข้ามา -->
+        <nav class="navbar navbar-expand d-flex flex-column " id="sidebar">
+          <include src="sidebar_teacher.html"></include>
+        </nav>
+        <include src="navbar_teacher.html"></include>
+
+  <!-- เนื้อหา -->
+  <section class="p-4 my-container">
+      <button class="btn" id="menu-btn"><i class="fa-solid fa-list"></i></button>
+      <div class="row">
+      <div class="card-container col-sm-12 col-md-12 col-lg-12">
+        <div class="card">
+          <div class="card-header"><h4>เพิ่มเกณฑ์การประเมินนิสิต/นักศึกษา</h4></div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-7 col-md-7 col-sm-12"><p id="name">ชื่อเกณฑ์</p>
+                  <input type="text" class="form-control" placeholder="ใส่ชื่อเกณฑ์">
+            </div>
+              <div class="col-lg-4 col-md-4 col-sm-12"><p id="name">คะแนนเต็ม</p>
+                <div class="input-group mb-3">
+                  <input type="number" class="form-control" placeholder="ใส่คะแนน">
+                  <span class="input-group-text" id="basic-addon2">คะแนน</span>
+                </div>
+              </div>
+              </div>
+              <button class="btn btn-primary">บันทึกเกณฑ์การประเมิน</button>
+              </div>
+            </div>
+          </div>
+        
+          <div class="table-container table-responsive col-sm-12 col-md-12 col-lg-12 " id="form">
+            <h4>สร้างแบบฟอร์มการประเมินนิสิต/นักศึกษา</h4>
+            <table class="table  table-striped text-center ">
+              <thead class="table-success">
+                <tr>
+                  <th>รายชื่อเกณฑ์</th>
+                  <th>รูปแบบการเพิ่มข้อมูล</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <select class="form-select" name="rule" id="ruleformname">
+                      <option value="1">การเขียนโค้ดเป็นลำดับ</option>
+                      <option value="2">การออกแบบ</option>
+                      <option value="3">เทคนิคการเขียนโค้ด</option>
+                    </select>
+                </td>
+                  <td> 
+                    <select class="form-select" name="type" id="typeofrule">
+                      <option value="1">ข้อความ</option>
+                      <option value="2">ตัวเลข</option>
+                      <option value="3">กล่องตัวเลือก</option>
+                    </select>
+                  </td>
+                  <td><button class="btn btn-primary" onclick="addFormDatatable()">เพิ่ม</button></td>
+                </tr>
+              </tbody>
+            </table>
+            <table id="datatable_form" class="table p-3 mb-5 rounded text-center">
+              <thead class="table-success">
+                <tr>
+                  <th>รายชื่อเกณฑ์</th>
+                  <th>รูปแบบการเพิ่มข้อมูล</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="data_form"></tbody>
+          </table>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#info">ดูตัวอย่างแบบฟอร์ม</button>
+          </div>
+        
+          <div class="modal fade" id="info">  
+            <div class="modal-dialog modal-xl modal-dialog-centered modal-fullscreen-lg-down">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">ตัวอย่างแบบฟอร์มการประเมินนิสิต/นักศึกษา</h5>
+                  <button class="btn-close" data-bs-toggle="modal"></button>
+                </div>
+                <div class="modal-body">
+                <div class="card-container">
+                  <div class="card">
+                    <div class="card-header">                    
+                    <input type="text" class="form-control w-50 " placeholder="ใส่ชื่อแบบฟอร์มการประเมิน ">
+                    </div>
+                    <div class="card-body">
+                      <div class="table-responsive">
+                      <table id="datatable_form" class="table p-3 mb-5 rounded text-center">
+                        <thead>
+                          <tr>
+                            <th>รายชื่อเกณฑ์</th>
+                            <th>รูปแบบการเพิ่มข้อมูล</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody id="data_form_modal"></tbody>
+                    </table>
+                    </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-primary">บันทึกแบบฟอร์มการประเมิน</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="table-container table-responsive col-sm-12 col-md-12 col-lg-12 " id="form">
+            <h4>สถานที่ฝึกงานที่จะส่งแบบประเมิน</h4>
+            <table class="table  table-striped text-center ">
+              <thead class="table-success">
+                <tr>
+                  <th>ชื่อสถานที่ฝึกงาน</th>
+                  <th>เลือกแบบฟอร์มการประเมิน</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>บริษัท Devgoal</td>
+                  <td>
+                    <select class="form-select" name="rule name" id="">
+                      <option selected>เลือกเกณฑ์</option>
+                      <option value="1">เกณฑ์ความสวยงาม</option>
+                      <option value="2">เกณฑ์การทำงานของระบบ</option>
+                      <option value="3">เกณฑ์ความซับซ้อนของข้อมูล</option>
+                    </select>
+                    </td>
+                  <td><button class="btn btn-primary">ส่งแบบประเมิน</button></td>
+                </tr>
+                <tr>
+                  <td>Sangsome</td>
+                  <td>
+                    <select class="form-select" name="rule name" id="">
+                      <option selected>เลือกเกณฑ์</option>
+                      <option value="1">เกณฑ์ความสวยงาม</option>
+                      <option value="2">เกณฑ์การทำงานของระบบ</option>
+                      <option value="3">เกณฑ์ความซับซ้อนของข้อมูล</option>
+                    </select>
+                  </td>
+                  <td><button class="btn btn-primary">ส่งแบบประเมิน</button></td>
+                </tr>
+                <tr>
+                  <td>Leo</td>
+                  <td>
+                    <select class="form-select" name="rule name" id="">
+                      <option selected>เลือกเกณฑ์</option>
+                      <option value="1">เกณฑ์ความสวยงาม</option>
+                      <option value="2">เกณฑ์การทำงานของระบบ</option>
+                      <option value="3">เกณฑ์ความซับซ้อนของข้อมูล</option>
+                    </select>
+                  </td>
+                  <td><button class="btn btn-primary">ส่งแบบประเมิน</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+</main>
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<!-- bootstrap js -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js" integrity="sha384-5h4UG+6GOuV9qXh6HqOLwZMY4mnLPraeTrjT5v07o347pj6IkfuoASuGBhfDsp3d" crossorigin="anonymous"></script>
+<!-- เปิดปิดsidebar -->
+<script type="text/javascript" src="../js/sidebar.js"></script>
+<script type="text/javascript" src="../js/load.js"></script> 
+<script>
+  var i = 1
+function addFormDatatable() {
+  var e = document.getElementById("ruleformname");
+	var ruleformname = e.options[e.selectedIndex].text;
+	var e = document.getElementById("typeofrule");
+	var typeofrule = e.options[e.selectedIndex].text;
+	
+	if(ruleformname != '' && typeofrule != '') {
+		
+		var newRow = document.createElement("tr")
+		var newCell0 = document.createElement("td")
+	    var newCell1 = document.createElement("td")
+	    var newCell2 = document.createElement("td")
+	    
+	    newCell0.innerHTML = ruleformname
+	    newCell1.innerHTML = typeofrule
+	    newCell2.innerHTML = "<button class='btn btn-danger'>ลบ</button>"
+	    
+	    newRow.append(newCell0)
+	    newRow.append(newCell1)
+	    newRow.append(newCell2)
+	    document.getElementById("data_form").appendChild(newRow)
+      
+      if(ruleformname != '' && typeofrule != '') {
+      var newRow = document.createElement("tr")
+		  var newCell0 = document.createElement("td")
+	    var newCell1 = document.createElement("td")
+	    
+	    newCell0.innerHTML = ruleformname
+	    newCell1.innerHTML = typeofrule
+	    
+	    newRow.append(newCell0)
+	    newRow.append(newCell1)
+	    document.getElementById("data_form_modal").appendChild(newRow)
+      }
+	} else {
+		alert('กรุณากรอกข้อมูลการประเมินให้ครบ')
+	}
+}
+
+$(document).on('click', '.btn-danger', function () {
+    $(this).closest('tr').remove();
+    return false;
+});
+
+
+</script>
+</body>
+</html>

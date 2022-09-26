@@ -1,0 +1,185 @@
+<!-- <%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%> -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- animate -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+<!-- MDB -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.css"rel="stylesheet"/>
+<style>
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.row{
+  background-color: white;
+  border-radius: 30px;
+  box-shadow: 12px 12px 22px;
+}
+.login img{
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  width:470px;
+  height: 700px;
+}
+.login h1{
+  font-size: 3rem;
+  font-weight: 700; 
+  font-family: 'Roboto Mono', monospace;
+}
+.btn{
+font-size: medium;
+margin: 0 auto;
+}
+.login{
+  height: 120vh;
+background: rgb(34,193,195);
+background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(78,55,255,1) 100%);
+}
+.form-outline{
+  width: 50%;
+  margin: 0 auto;
+}
+hr{
+  width: 75%;
+  margin:0 auto;
+  color: rgba(78,55,255,1);
+}
+@media (max-width:820px){
+  img{
+    display: none;
+  }
+  .form-outline{
+  width: 65%;
+  margin: 0 auto;
+}
+#logo{
+  display: inline;
+}
+}
+#logo{
+  width: 70px;
+  height: 60px;
+}
+</style>
+</head>
+<body>		              
+					<!-- </form>
+				</div>
+			</div>
+		</div>
+	</section> -->
+
+<section class="login py-5 ">
+  <div class="container">
+    <div class="row g-0">
+      <div class="col-lg-4">
+        <img src="../image/background1.jpg" class="img-fluid" alt="login_image">
+      </div>
+      <div class="col-lg-8 text-center py-5">
+          <h1 class="animate__animated animate__slideInRight">
+           <img src="../image/devgoallogo.png" alt="logo" id="logo">Welcome to login page</h1>
+        <hr>
+          <form>
+              <div class="form-row mt-5 ">
+                <div class="form-outline col-lg-12 col-sm-12">
+                  <input type="email" class="form-control px-3" id="email">
+                  <label class="form-label" for="อีเมล์">อีเมล์</label>
+                </div>
+              </div>
+              <div class="form-row py-4">
+                <div class="form-outline col-lg-12">
+                  <input type="password" class="form-control px-3" id="password">
+                  <label class="form-label" for="password">รหัสผ่าน</label>
+                </div>
+              </div>
+        <div class="form-check mt-2">
+        <a href="resetPassword">ลืมรหัสผ่านหรือเปล่า?</a>
+        </div>
+            <div class="form-row py-4">
+              <div class=" col-lg-12 col-sm-12">
+                  <button id="sweetalert" class="btn btn-primary btn-rounded w-50 btn-block" onclick="Login()">
+                    <i class="fa-solid fa-arrow-right-to-bracket"></i> เข้าสู่ระบบ</button>
+              </div>
+            </div>
+        <label>หรือ</label>
+        <div class="form-row py-3">
+          <div class=" col-lg-12 col-sm-12">
+            <button class="btn btn-outline-danger btn-rounded w-50 btn-block" href="register">
+              <i class="fa-solid fa-file-signature"></i> สมัครสมาชิก</button>
+          </div>
+          </div>
+          <div class="form-row pt-5">
+          <div class=" col-lg-12 col-sm-12">
+            <button class="btn btn-primary btn-floating"><i class="fa-solid fa-y"></i></button>
+            <button class="btn btn-info btn-floating"><i class="fa-solid fa-o"></i></button>
+            <button class="btn btn-success  btn-floating"><i class="fa-solid fa-u"></i></button>
+            <button class="btn btn-secondary  btn-floating"><i class="fa-solid fa-r"></i></button>
+            <button class="btn btn-warning  btn-floating"><i class="fa-solid fa-w"></i></button>
+            <button class="btn btn-danger  btn-floating"><i class="fa-solid fa-e"></i></button>
+            <button class="btn btn-light  btn-floating"><i class="fa-solid fa-l"></i></button>
+            <button class="btn btn-dark  btn-floating"><i class="fa-solid fa-c"></i></button>
+            <button class="btn btn-primary btn-floating"><i class="fa-solid fa-o"></i></button>
+            <button class="btn btn-info btn-floating"><i class="fa-solid fa-m"></i></button>
+            <button class="btn btn-success btn-floating"><i class="fa-solid fa-e"></i></button>
+          </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</section>
+<!-- MDB -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.js"></script>
+</body>
+</html>
+
+<script type="text/javascript">
+	
+	function Login() {
+		
+		const data = $.getJSON('https://api.ipify.org?format=json', function(data){
+			
+			email = document.getElementById('email').value
+			password = document.getElementById('password').value
+			ip = data.ip
+			
+			if(email != "" && password != "" && ip != "") {
+				
+				axios({
+					  method: "post",
+					  url: "login_validate",
+					  data: 'email=' + email + '&password=' + password + '&ip=' + ip,
+					}).then(function (response) {
+						alert(response.data.status)
+						window.location.replace(response.data.redirect);
+					  })
+					  .catch(function (response) {
+						  alert('ไม่สามารถทำรายการได้ในขณะนี้')
+					  });
+			} else {
+				alert("กรุณากรอกข้อมูลให้ครบ")
+			}
+			
+		});
+
+	}
+
+  document.getElementById('sweetalert').addEventListener('click',function(){
+    Swal.fire({
+      title:'เข้าสู่ระบบสำเร็จ',
+      text:'อีเมลและรหัสผ่านถูกต้อง',
+      icon:'success',
+    })
+  })
+</script>

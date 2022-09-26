@@ -1,0 +1,737 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Register_edit_student</title>
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+<!-- MDB -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.css" rel="stylesheet"/>
+<!-- MDB -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.20.0/dist/bootstrap-table.min.css">
+<link href="resources/images/logo/devgoal_logo.png" size="16x16" rel="shortcut icon" type="image/png" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script type="text/javascript" src="https://unpkg.com/bootstrap-table@1.20.0/dist/bootstrap-table.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="../stylecss/style_user.css">
+<script type="text/javascript" src="../js/load.js"></script>
+</head>
+<style>
+@font-face {
+    font-family: 'printable4ubold';
+    src: url('resources/stylecss/printable4u_bold_ver_1.00-webfont.woff2') format('woff2'),
+         url('resources/stylecss/printable4u_bold_ver_1.00-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+  *{
+    font-family:printable4ubold ;
+    font-size: 18px;
+}
+    .btn{
+        border-radius: 10px;
+        align-items: center;
+    }
+	.nav-link{
+        border-radius: 10px; 
+	    color:white;
+	}
+    body{
+        background: rgb(34,193,195);
+        background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(78,55,255,1) 100%);
+    }
+    #genre{
+        width: max-content;
+    }
+    .d-flex{
+        justify-content: space-evenly;
+        align-items: center;    
+        flex-direction: row;
+    }
+    .nav-item{
+        padding-bottom:5px ;
+    }
+    hr{
+        color: #f3ff4e;
+    }
+    .card{
+        border: 2px solid #f3ff4e;
+    }
+    #submit{
+        margin-top: 20px;
+    }
+    h1{
+    display: inline-flex;
+    }
+
+</style>
+<body>
+	</br>
+	<div class="container">
+			<!-- loader -->
+			<div class="ring">DEVGOAL<span class="loading"></span></div>
+
+			<div class="card shadow p-3 mb-5 rounded">
+                <span class="px-3"><h1 class="text-primary">Dev</h1><h1>Goal</h1></span>              
+                <div class="container">
+                    <h1 class="fw-bold fs-3 bg-primary text-white p-2 rounded">แบบฟอร์มขอแก้ไขข้อมูล (สำหรับนิสิต / นักศึกษา)</h1>
+                  </div>
+                  <hr>
+				<div class="card-body">
+					<div class="tab-content" id="myTabContent">
+						<div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-1 my-1">
+                                <p>เพศ</p>	
+					  			<div class="form-check">
+								  <input class="form-check-input" type="radio" name="flexRadioDefault" id="male_gender">
+								  <label class="form-check-label" for="male_gender">
+								    ชาย
+								  </label>
+								</div>
+								<div class="form-check">
+								  <input class="form-check-input" type="radio" name="flexRadioDefault" id="female_gender" checked>
+								  <label class="form-check-label" for="female_gender">
+								    หญิง
+								  </label>
+								</div>
+							</div>
+							<div class="col-sm-12 col-md-6 col-lg-4 my-1">
+								<p>ชื่อ</p>
+						  		<input type="text" class="form-control" placeholder="ชื่อ (ไม่ต้องใส่คำนำหน้า)" aria-label="ชื่อ" aria-describedby="basic-addon1" id="firstname">
+						  	</div>
+						  	<div class="col-sm-12 col-md-6 col-lg-4 my-1">
+						  		<p>นามสกุล</p>
+						  		<input type="text" class="form-control" placeholder="นามสกุล" aria-label="นามสกุล" aria-describedby="basic-addon1" id="lastname">
+							</div>
+							<div class="col-sm-12 col-md-12 col-lg-3 my-1">
+						  		<p style="margin:0;display:inline;float:left">รูปถ่ายหน้าตรง</p><p></p><p style="font-size: 12px; color : red; margin:0;display:inline;float:right">(ไฟล์ JPEG, PNG เท่านั้น)</p>
+						  		 <br>
+						  		 <input type="file" class="form-control" id="profile_image">
+						  	</div>
+                              <div class="col-sm-12 col-md-12 col-lg-1">
+							</div>
+                              <div class="col-sm-12 col-md-4 col-lg-4 my-1" id="div_student_code">
+								<p>รหัสนิสิต/นักศึกษา</p>
+						  		<input type="number" class="form-control" placeholder="รหัสนิสิต/นักศึกษา" aria-label="รหัสนิสิต/นักศึกษา" aria-describedby="basic-addon1" min="1" id="student_code">
+						  	</div>
+                              <div class="col-sm-12 col-md-4 col-lg-4 my-1">
+								<p>เลขบัตรประชาชน</p>
+						  		<input type="number" class="form-control" placeholder="เลขบัตรประชาชน" aria-label="เลขบัตรประชาชน" aria-describedby="basic-addon1" min="1" id="identified">
+						  	</div>
+						  	<div class="col-sm-12 col-md-4 col-lg-1 my-1">
+								<p>อายุ</p>
+						  		<input type="number" class="form-control" placeholder="อายุ" aria-label="อายุ" aria-describedby="basic-addon1" min="1" id="age">
+						  	</div>
+						  	<div class="col-sm-12 col-md-4 col-lg-2 my-1">
+								<p>เบอร์โทร</p>
+						  		<input type="number" class="form-control" placeholder="เบอร์โทร" aria-label="เบอร์โทร" aria-describedby="basic-addon1" min="1" id="phone">
+						  	</div>
+						</div>
+						<hr>
+							<div class="row">
+								<div class="col-sm-12 col-md-12 col-lg-4 my-2">
+							  		<p>ชื่อที่พัก/ชื่อหมู่บ้าน</p>
+							  		<input type="text" class="form-control" placeholder="ชื่อที่พัก/ชื่อหมู่บ้าน" aria-label="ชื่อที่พัก/ชื่อหมู่บ้าน" aria-describedby="basic-addon1" id="address_1">
+								</div>
+								<div class="col-sm-12 col-md-6 col-lg-2 my-2">
+							  		<p>เลขที่</p>
+							  		<input type="number" class="form-control" placeholder="เลขที่" aria-label="เลขที่" aria-describedby="basic-addon1" min="1" id="address_2">
+								</div>
+								<div class="col-sm-12 col-md-6 col-lg-2 my-2">
+							  		<p>หมู่ที่</p>
+							  		<input type="number" class="form-control" placeholder="หมู่ที่" aria-label="หมู่ที่" aria-describedby="basic-addon1" min="1" id="address_3">
+								</div>
+								<div class="col-sm-12 col-md-6 col-lg-4 my-2">
+							  		<p>ตำบล</p>
+							  		<input type="text" class="form-control" placeholder="ตำบล" aria-label="ตำบล" aria-describedby="basic-addon1" id="address_4">
+								</div>
+								<div class="col-sm-12 col-md-6 col-lg-4 my-2">
+							  		<p>อำเภอ</p>
+							  		<input type="text" class="form-control" placeholder="อำเภอ" aria-label="อำเภอ" aria-describedby="basic-addon1" id="address_5">
+								</div>
+								<div class="col-sm-12 col-md-6 col-lg-4 my-2">
+							  		<p>จังหวัด</p>
+							  		<input type="text" class="form-control" placeholder="จังหวัด" aria-label="จังหวัด" aria-describedby="basic-addon1" id="address_6">
+								</div>
+								<div class="col-sm-12 col-md-6 col-lg-4 my-2">
+							  		<p>รหัสไปรษณีย์</p>
+							  		<input type="number" class="form-control" placeholder="รหัสไปรษณีย์" aria-label="รหัสไปรษณีย์" aria-describedby="basic-addon1" min="1" id="address_7">
+								</div>
+							</div>
+						<hr>
+						  <div class="row">
+						  	<div class="col-sm-12 col-md-12 col-lg-6 my-2">
+								<p id="p_email">อีเมลมหาลัย</p>
+						  		<input type="email" class="form-control" placeholder="อีเมลมหาลัย" aria-describedby="basic-addon1" id="email">
+						  	</div>
+						  	<div class="col-sm-12 col-md-12 col-lg-6 my-2" id="div_advisor">
+								<p>ชื่ออาจารย์ที่ปรึกษา</p> 
+						  		<input type="text" class="form-control" placeholder="ชื่ออาจารย์ที่ปรึกษา (ใส่คำนำหน้า)" aria-label="อาจารย์ที่ปรึกษา" aria-describedby="basic-addon1" id="advisor">
+						  	</div>
+						  </div>
+						  </br>
+						  <div class="row">
+						  	<div class="col-sm-12 col-md-4 col-lg-4 my-2" id="div_university">
+						  	<p>มหาวิทยาลัย</p>
+						  	<select class="form-select" id="university">
+							</select>
+						  	</div>
+						  	
+						  	<div class="col-sm-12 col-md-4 col-lg-4 my-2" id="div_faculty">
+						  	<p>คณะ</p>
+						  	<select class="form-select" id="faculty">
+							</select>
+						  	</div>
+						  	
+						  	<div class="col-sm-12 col-md-4 col-lg-4 my-2" id="div_course">
+						  	<p>หลักสูตร</p>
+						  	<select class="form-select" id="course">
+							</select>
+						  	</div>
+						  </div>
+						  <hr>
+						  <div class="row">
+						  	<div class="col-sm-12 col-md-12 col-lg-7">
+							  	<div class="card shadow p-3 rounded">
+								  <div class="card-header bg-primary shadow p-3 mb-5 rounded text-white fs-5">
+								    <i class="fa-solid fa-code fa-md"></i> ความสามารถด้านภาษาโปรแกรมมิ่ง <i class="fa-solid fa-code fa-md"></i>
+								  </div>
+								  <div class="card-body">
+								  <div class="row">
+								  	<div class="col-sm-12 col-md-12 col-lg-6">
+								  		<p>ภาษาโปรแกรมมิ่ง</p>
+									    <input type="text" class="form-control" placeholder="เพิ่มครั้งละ 1 ภาษาเท่านั้น เช่น (python)" aria-label="ภาษาโปรแกรมมิ่ง" aria-describedby="basic-addon1" id="language">
+								    </div>
+								    <div class="col-sm-12 col-md-12 col-lg-4">
+								    	<p>ระดับความชำนาญ</p>
+									    <select class="form-select" id="level">
+										  <option value="0"></option>
+										  <option value="1">ระดับเริ่มต้น</option>
+										  <option value="2">ระดับปานกลาง</option>
+										  <option value="3">ระดับสูง</option>
+										</select>
+								    </div>
+								    <div class="col-sm-12 col-md-12 col-lg-2">
+									    <button class="btn btn-primary mt-4" onclick="addSkillDatatable()">เพิ่มข้อมูล</button>
+								    </div>
+								    </div>
+								    </br>
+								    <div class="col-sm-12 col-md-12 col-lg-8">
+									    <table id="datatable_language" class="table table-primary table-striped shadow p-3 mb-5 rounded" style="width:100%">
+									        <thead>
+									            <tr>
+									            	<th>#</th>
+									                <th>ภาษาโปรแกรมมิ่ง</th>
+									                <th>ระดับความชำนาญ</th>
+									                <th>ลบ</th>
+									            </tr>
+									        </thead>
+									        <tbody id="data_language">
+									    </table>
+								    </div>
+								  </div>
+								</div>
+							  </div>
+						  	<div class="col-sm-12 col-md-12 col-lg-5 ">
+                                <div class=" card shadow p-3 rounded ">
+						  	<p>รหัสผ่าน</p>
+						  	<input type="password" class="form-control" placeholder="รหัสผ่าน" aria-label="รหัสผ่าน" aria-describedby="basic-addon1" id="password">
+						  	<div class="form-check">
+							  <input class="form-check-input mt-2" type="checkbox" onclick="showPassword()" id="flexCheckDefault">
+							  <label class="form-check-label mt-1" for="flexCheckDefault">
+							    แสดงรหัสผ่าน
+							  </label>
+							</div>
+						  	<p class="my-3">ยืนยันรหัสผ่าน</p>
+						  	<input type="password" class="form-control" placeholder="ยืนยันรหัสผ่าน" aria-label="ยืนยันรหัสผ่าน" aria-describedby="basic-addon1" id="confirm_password">
+						  	</div>
+                              <div class="col-sm-12 col-md-12 col-lg-12 button-container">
+							<input type="hidden" value="1" id="register_choice">
+							<button type="button" onclick="register()" class="btn btn-warning btn-block fs-5" id="submit">
+                                <i class="fa-solid fa-hand-point-right"></i> ร้องขอการแก้ไขข้อมูลการสมัคร <br> ไปยังแอดมิน</button>
+						</div>
+                        </div>
+						  </div>
+					</div>
+				</div>
+			</div>
+	</div>
+</body>
+<script type="text/javascript">
+
+$(function() {
+	$('#university').append($('<option></option>'));
+	axios({
+		  method: "post",
+		  url: "findUniversity",
+		}).then(function (response) {
+			$.each(response.data, function(i, data) {
+               	$('#university').append($('<option value="' + response.data[i].university_id + '">' + response.data[i].name + '</option>'));
+           });
+			
+		  })
+		  .catch(function (response) {
+			Swal.fire({
+      title:'ไม่สามารถทำรายการได้ในขณะนี้',
+      icon:'error',
+    })
+		  });
+	});
+
+$('#university').change(function() {
+	
+	$("#faculty").empty();
+	$("#course").empty();
+	
+	var university_id = $(this).val()
+	
+    if (university_id !== '') {
+    	
+    	$('#faculty').append($('<option></option>'));
+    	
+    	axios({
+			  method: "post",
+			  url: "findFacultyByUniversity",
+			  data: 'university_id='+university_id,
+			}).then(function (response) {
+				
+				$.each(response.data, function(i, data) {
+	                 $('#faculty').append($('<option value="' + response.data[i].faculty_id + '">' + response.data[i].name + '</option>'));
+	             });
+				
+			  })
+			  .catch(function (response) {
+				Swal.fire({
+      title:'ไม่สามารถทำรายการได้ในขณะนี้',
+      icon:'error',
+    })
+			  });
+			
+			
+    }
+});
+
+$('#faculty').change(function() {
+	
+	$("#course").empty();
+	
+	var faculty_id = $(this).val()
+	
+    if (faculty_id !== '') {
+    	
+    	$('#course').append($('<option></option>'));
+    	
+    	axios({
+			  method: "post",
+			  url: "findCourseByFaculty",
+			  data: 'faculty_id='+faculty_id,
+			}).then(function (response) {
+				
+				$.each(response.data, function(i, data) {
+	                 $('#course').append($('<option value="' + response.data[i].course_id + '">' + response.data[i].name + '</option>'));
+	             });
+				
+			  })
+			  .catch(function (response) {
+				Swal.fire({
+      title:'ไม่สามารถทำรายการได้ในขณะนี้',
+      icon:'error',
+    })
+			  });
+			
+			
+    }
+});
+
+
+function getValueSkillDatatable() {
+	
+	var skill = []
+	var subSkill = []
+	
+	var table = $('#datatable_language')
+	
+	var i = 0
+	table.children("tbody").find("td").each(function() {
+		subSkill.push($(this).text())
+		
+		if(i == 3) {
+			skill.push(subSkill.splice(1,2))
+			subSkill = []
+			i = 0
+		} else {
+			i++
+		}
+		
+   });
+	
+	return skill
+	
+	
+}
+
+
+
+
+
+function showPassword() {
+	  var x = document.getElementById("password")
+	  var z = document.getElementById("confirm_password")
+	  
+	  if (x.type === "password" && z.type === "password") {
+	    x.type = "text"
+	    z.type = "text"
+	  } else {
+	    x.type = "password"
+	    z.type = "password"
+	  }
+	}
+	
+var i = 1
+function addSkillDatatable() {
+	var language = document.getElementById("language").value
+	 
+	var e = document.getElementById("level");
+	var level = e.options[e.selectedIndex].text;
+	
+	if(language != '' && level != '') {
+		
+		var newRow = document.createElement("tr")
+		var newCell0 = document.createElement("td")
+	    var newCell1 = document.createElement("td")
+	    var newCell2 = document.createElement("td")
+	    var newCell3 = document.createElement("td")
+	    
+	    newCell0.innerHTML = i++
+	    newCell1.innerHTML = language
+	    newCell2.innerHTML = level
+	    newCell3.innerHTML = "<i class='fa fa-close' style='color: red'></i>"
+	    
+	    newRow.append(newCell0)
+	    newRow.append(newCell1)
+	    newRow.append(newCell2)
+	    newRow.append(newCell3)
+	    document.getElementById("data_language").appendChild(newRow)
+	    
+	    document.getElementById("language").value = ''
+	    document.getElementById("level").value = ''
+		
+	} else {
+		Swal.fire({
+      title:'กรุณากรอกข้อมูลความสามารถ',
+      icon:'warning',
+    })
+	}
+	
+}
+
+$(document).on('click', 'i', function () {
+    $(this).closest('tr').remove();
+    return false;
+});
+
+function checkImageType(profile_image) {
+	
+	const  fileType = profile_image['type'];
+	
+	const validImageTypes = ['image/jpeg', 'image/png'];
+	
+	if (!validImageTypes.includes(fileType)) {
+		Swal.fire({
+      title:'ไม่รองรับไฟล์รูปภาพใช้ได้แค่ PNG , JPG',
+      icon:'warning',
+    })
+	    return -1
+	} else {
+		return 0
+	}
+}
+
+function checkDataForm(age, address_2, address_3, address_7, student_code, identified, phone, register_choice, email) {
+	
+	const regex_pattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	
+	if(register_choice == "1") {
+		
+		if(age > 0 && address_2 > 0 && address_3 > 0 && address_7 > 0 && student_code > 0 && phone > 0 && phone.length == 10 && identified > 0 && identified.length == 13 && regex_pattern.test(email)) {
+			return 0
+		} else {
+			Swal.fire({
+      title:'กรุณาตรวจสอบข้อมูล (เลขที่, หมู่ที่, รหัสไปรษณีย์, รหัสนิสิต/นักศึกษา, เบอร์โทร, เลขบัตรประชาชน, อีเมล, อายุ)',
+      icon:'info',
+    })
+			return -1
+		}
+	} else {
+		
+		if(age > 0 && address_2 > 0 && address_3 > 0 && address_7 > 0 && phone > 0 && phone.length == 10 && identified > 0 && identified.length == 13 && regex_pattern.test(email)) {
+			return 0
+		} else {
+			Swal.fire({
+      title:'กรุณาตรวจสอบข้อมูล (เลขที่, หมู่ที่, รหัสไปรษณีย์, เบอร์โทร, เลขบัตรประชาชน, อีเมล, อายุ)',
+      icon:'info',
+    })
+			return -1
+		}
+		
+	}
+	
+}
+	
+function register() {
+	var male = document.getElementById("male_gender").checked
+	var female = document.getElementById("female_gender").checked
+	var gender = ""
+	var firstname = document.getElementById("firstname").value
+	var lastname = document.getElementById("lastname").value
+	var age = document.getElementById("age").value
+	var address_1 = document.getElementById("address_1").value
+	var address_2 = document.getElementById("address_2").value
+	var address_3 = document.getElementById("address_3").value
+	var address_4 = document.getElementById("address_4").value
+	var address_5 = document.getElementById("address_5").value
+	var address_6 =  document.getElementById("address_6").value
+	var address_7 = document.getElementById("address_7").value
+	var email = document.getElementById("email").value
+	var student_code = document.getElementById("student_code").value
+	var phone = document.getElementById("phone").value
+    var identified = document.getElementById("identified").value
+ 	var advisor = document.getElementById("advisor").value
+	var university = document.getElementById("university").value
+	var faculty = document.getElementById("faculty").value
+	var course = document.getElementById("course").value
+	var password = document.getElementById("password").value
+	var confirm_password = document.getElementById("confirm_password").value
+	var register_choice = document.getElementById("register_choice").value
+	
+	let formData = new FormData();
+	
+	skill = getValueSkillDatatable()
+	
+	if(male == true) {
+		gender = "1"
+	} else if(female == true) {
+		gender = "2"
+	} else {
+		Swal.fire({
+      title:'กรุณาเลือกเพศ',
+      icon:'info',
+    })
+	}
+	
+	if(password !== confirm_password) {
+		Swal.fire({
+      title:'รหัสผ่านไม่ตรงกัน',
+      icon:'warning',
+    })
+	} else {
+		
+		if(register_choice == "1") {
+			if(age != "" && gender != "" && firstname != "" && lastname != "" && address_1 != "" && address_2 != "" && address_3 != "" && address_4 != "" && address_5 != "" && address_6 != "" && address_7 != "" && email != "" && student_code != "" && phone != "" && identified != "" && advisor != "" && university != "" && faculty != "" && course != "" && password != "" && register_choice != "" && profile_image.files[0] != undefined) {
+				
+				checkData = checkDataForm(age, address_2, address_3, address_7, student_code, identified, phone, register_choice, email)
+				
+				checkImage = checkImageType(profile_image.files[0])
+				
+				if(checkData == 0 && checkImage == 0) {
+					
+					formData.append("profile_image", profile_image.files[0]);
+					formData.append("gender", gender);
+					formData.append("age", age);
+					formData.append("firstname", firstname);
+					formData.append("lastname", lastname);
+					formData.append("address_1", address_1);
+					formData.append("address_2", address_2);
+					formData.append("address_3", address_3);
+					formData.append("address_4", address_4);
+					formData.append("address_5", address_5);
+					formData.append("address_6", address_6);
+					formData.append("address_7", address_7);
+					formData.append("email", email);
+					formData.append("student_code", student_code);
+					formData.append("phone", phone);
+					formData.append("identified", identified);
+					formData.append("advisor", advisor);
+					formData.append("university", university);
+					formData.append("faculty", faculty);
+					formData.append("course", course);
+					formData.append("password", password);
+					formData.append("register_choice", register_choice);
+					formData.append("skill", JSON.stringify(skill));
+					
+					axios({
+						  method: "post",
+						  url: "register_user",
+						  data: formData,
+						})
+						  .then(function (response) {
+							  Swal.fire(response.data.status)
+							  location.reload()
+						  })
+						  .catch(function (response) {
+							Swal.fire({
+							title:'ไม่สามารถทำรายการได้ในขณะนี้',
+							icon:'error',
+							})
+						  });
+					
+				}
+				
+			} else {
+				Swal.fire({
+				title:'กรุณากรอกข้อมูลให้ครบ',
+				icon:'error',
+				})
+			}
+		} else if(register_choice == "2") {
+			if(age != "" && gender != "" && firstname != "" && lastname != "" && address_1 != "" && address_2 != "" && address_3 != "" && address_4 != "" && address_5 != "" && address_6 != "" && address_7 != "" && email != "" && phone != "" && identified != "" && university != "" && faculty != "" && course != "" && password != "" && register_choice != "" && profile_image.files[0] != undefined) {
+				
+				checkData = checkDataForm(age, address_2, address_3, address_7, "0", identified, phone, register_choice, email)
+				
+				checkImage = checkImageType(profile_image.files[0])
+				
+				if(checkData == 0 && checkImage == 0) {
+					
+					formData.append("profile_image", profile_image.files[0]);
+					formData.append("gender", gender);
+					formData.append("age", age);
+					formData.append("firstname", firstname);
+					formData.append("lastname", lastname);
+					formData.append("address_1", address_1);
+					formData.append("address_2", address_2);
+					formData.append("address_3", address_3);
+					formData.append("address_4", address_4);
+					formData.append("address_5", address_5);
+					formData.append("address_6", address_6);
+					formData.append("address_7", address_7);
+					formData.append("email", email);
+					formData.append("phone", phone);
+					formData.append("identified", identified);
+					formData.append("university", university);
+					formData.append("faculty", faculty);
+					formData.append("course", course);
+					formData.append("password", password);
+					formData.append("register_choice", register_choice);
+					formData.append("skill", JSON.stringify(skill));
+					
+					axios({
+						  method: "post",
+						  url: "register_user",
+						  data: formData,
+						})
+						  .then(function (response) {
+							  Swal.fire(response.data.status)
+							  location.reload()
+						  })
+						  .catch(function (response) {
+							Swal.fire({
+							title:'ไม่สามารถทำรายการได้ในขณะนี้',
+							icon:'error',
+							})
+						  });
+					
+				}
+				
+				
+			} else {
+				Swal.fire({
+				title:'กรุณากรอกข้อมูลให้ครบ',
+				icon:'warning',
+				})
+			}
+		} else if(register_choice == "3") {
+			if(age != "" && gender != "" && firstname != "" && lastname != "" && address_1 != "" && address_2 != "" && address_3 != "" && address_4 != "" && address_5 != "" && address_6 != "" && address_7 != "" && email != "" && phone != "" && identified != "" && password != "" && register_choice != "" && profile_image.files[0] != undefined) {
+				
+				checkData = checkDataForm(address_2, address_3, address_7, "0", identified, phone, register_choice, email)
+				
+				checkImage = checkImageType(profile_image.files[0])
+				
+				if(checkData == 0 && checkImage == 0) {
+					
+					formData.append("profile_image", profile_image.files[0]);
+					formData.append("gender", gender);
+					formData.append("age", age);
+					formData.append("firstname", firstname);
+					formData.append("lastname", lastname);
+					formData.append("address_1", address_1);
+					formData.append("address_2", address_2);
+					formData.append("address_3", address_3);
+					formData.append("address_4", address_4);
+					formData.append("address_5", address_5);
+					formData.append("address_6", address_6);
+					formData.append("address_7", address_7);
+					formData.append("email", email);
+					formData.append("phone", phone);
+					formData.append("identified", identified);
+					formData.append("password", password);
+					formData.append("register_choice", register_choice);
+					formData.append("skill", JSON.stringify(skill));
+					
+					axios({
+						  method: "post",
+						  url: "register_user",
+						  data: formData,
+						})
+						  .then(function (response) {
+							  Swaal.fire(response.data.status)
+							  location.reload()
+						  })
+						  .catch(function (response) {
+							Swal.fire({
+							title:'ไม่สามารถทำรายการได้ในขณะนี้',
+							icon:'error',
+							})
+						  });
+					
+				}
+				
+				
+			} else {
+				Swal.fire({
+				title:'กรุณากรอกข้อมูลให้ครบ',
+				icon:'warning',
+				})
+			}
+		} else {
+			Swal.fire({
+				title:'กรุณาเลือกผู้ใช้ที่ต้องการสมัครสมาชิก',
+				icon:'warning',
+				})
+		} 		
+	}
+	
+	/* console.log('Gender : '+gender)
+	console.log('Firstname : '+firstname)
+	console.log('Lastname : '+lastname)
+	console.log('Address : '+address)
+	console.log('Email : '+email)
+	console.log('Student Code : '+student_code)
+	console.log('Phone : '+phone)
+	console.log('Identified : '+identified)
+	console.log('Advisor : '+advisor)
+	console.log('University : '+university)
+	console.log('Faculty : '+faculty)
+	console.log('Course : '+course)
+	console.log('Password : '+password)
+	console.log('Confirm Password : '+confirm_password) 
+	console.log('Register Choice : '+register_choice) */
+	
+	
+}
+</script>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เพิ่มสถานที่ทำงาน</title>
+  <meta name="theme-color" content="hsl(24.3, 97.4%, 54.3%)">
+  <link href="../image/devgoallogo.png" size="48x48" rel="shortcut icon"  type="image/png"/>
+  <link rel="stylesheet" href="../stylecss/style_user.css">
+</head>
+
+<body>
+  <main>  
+        <!-- loader -->
+        <div class="ring">DEVGOAL<span class="loading"></span></div>
+        <!-- import navbarและsidebarเข้ามา -->
+        <nav class="navbar navbar-expand d-flex flex-column " id="sidebar">
+          <include src="sidebar_emp.html"></include>
+        </nav>
+        <include src="navbar_emp.html"></include>
+
+  <!-- เนื้อหา -->
+  <section class="p-4 my-container">
+      <button class="btn" id="menu-btn"><i class="fa-solid fa-list"></i></button>
+      <!-- cardเพิ่มสถานที่ทำงาน -->
+      <div class="card-container" id="somecard">
+        <div class="card" id="ins">
+          <div class="card-header">เพิ่มสถานที่ทำงาน</div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                <form>
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="name" placeholder="ชื่อบริษัท" name="name">
+                        <label for="course">ชื่อบริษัท</label>
+                      </div>
+                      <div class="row">
+                          <div class="col-sm-12 col-md-2 collg-2">
+                            <select class="form-select" id="country">
+                                <option>ไทย</option>
+                                <option>เมกา</option>
+                                <option>อียิปต์</option>
+                                <option>พม่า</option>
+                              </select>
+                          </div>
+                  <div class="col-sm-12 col-md-2 collg-2">
+                    <select class="form-select" id="province">
+                        <option>กทม</option>
+                        <option>หนองคาย</option>
+                        <option>ขอนแก่น</option>
+                        <option>เชียงใหม่</option>
+                      </select>
+                  </div>
+                  <div class="col-sm-12 col-md-3 collg-3">
+                    <select class="form-select" id="district">
+                        <option>เขาสวนกวาง</option>
+                        <option>เมือง</option>
+                        <option>ท่ามะเฟือง</option>
+                        <option>บ้านช้าง</option>
+                      </select>
+                </div>
+                <div class="col-sm-12 col-md-3 collg-3">
+                    <select class="form-select" id="locality">
+                        <option>เวียงคำ</option>
+                        <option>กุดลิงง้อ</option>
+                        <option>บ้านช้าง</option>
+                      </select>
+                </div>
+                <div class="col-sm-12 col-md-2 collg-2">
+                    <select class="form-select" id="zipcode">
+                        <option>43100</option>
+                        <option>42100</option>
+                        <option>41000</option>
+                      </select>
+                </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-7 col-md-7 col-sm-12">
+                <div class="form-floating ">
+                  <input type="email" class="form-control" id="email" placeholder="อีเมล์">
+                  <label for="detail">อีเมล์</label>
+                </div>
+              </div>
+              <div class="col-lg-5 col-md-5 col-sm-12">
+                <div class="form-floating ">
+                  <input type="text" class="form-control" id="phone" placeholder="เบอร์โทร">
+                  <label for="number">เบอร์โทร</label>
+                </div>
+              </div>
+              </div>
+                  <div class="row">
+                    <div class="col-lg-7 col-md-7 col-sm-12">
+                <div class="form-floating ">
+                  <input type="text" class="form-control" id="skill" placeholder="ความสามารถที่ต้องการ">
+                  <label for="skill">ความสามารถที่ต้องการ</label>
+                </div>
+              </div>
+              <div class="col-lg-5 col-md-5 col-sm-12">
+                <div class="form-floating ">
+                  <input type="text" class="form-control" id="position" placeholder="ตำแหน่ง">
+                  <label for="position">ตำแหน่ง</label>
+                </div>
+              </div>
+              </div>
+                  <div class="row">
+                      <div class="col-lg-10 col-md-10 col-sm-12">
+                  <div class="form-floating ">
+                    <input type="text" class="form-control" id="detail" placeholder="รายละเอียด" name="detail">
+                    <label for="detail">รายละเอียด</label>
+                  </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-12">
+                  <div class="form-floating ">
+                    <input class="form-control " placeholder="จำนวนที่เปิดรับ" type="number" id="number">
+                    <label for="number">จำนวนที่เปิดรับ</label>
+                  </div>
+                </div>
+                </div>
+                  <button class="btn btn-danger">ยกเลิก</button>
+                  <button class="btn btn-primary">บันทึก</button>
+                </form>
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+  </section>
+</main>
+
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="https://unpkg.com/htmlincludejs"></script>
+<!-- bootstrap js -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js" integrity="sha384-5h4UG+6GOuV9qXh6HqOLwZMY4mnLPraeTrjT5v07o347pj6IkfuoASuGBhfDsp3d" crossorigin="anonymous"></script>
+<!-- เปิดปิดsidebar -->
+<script type="text/javascript" src="../js/sidebar.js"></script>
+<script type="text/javascript" src="../js/load.js"></script>   
+</body>
+</html>

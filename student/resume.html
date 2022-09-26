@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สร้างเรศซูเม่</title>
+    <meta name="theme-color" content="hsl(24.3, 97.4%, 54.3%)">
+    <link href="resources/image/devgoallogo.png" size="16x16" rel="shortcut icon"  type="image/png"/>
+    <link rel="stylesheet" href="resources/stylecss/style_user.css">
+    <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/htmlincludejs"></script>
+    </head>
+<style>
+      @media print {
+    html, body {
+    width: 210mm;
+    height: 297mm;  
+    overflow: hidden; 
+    }
+    .btn,.menu-container {
+    visibility: hidden;
+    display: none;
+    }
+    }
+    body {
+    background: rgb(204,204,204); 
+    }
+    page {
+    background: #fff;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+    }
+    page[size=A4]{
+    width: 210mm;
+    height: 297mm; 
+    }
+    @page {
+    size: 210mm 297mm;
+    margin: 0; 
+    }
+    img{
+        border-radius: 50%;
+        width:180px;
+        height: 180px;
+    }
+    .center{
+        display: block;
+        margin: 0 auto;
+    }
+    Aside{
+        background-color: #3b4f86;
+    }
+    p,i{
+        font-size: 14px;
+    }
+    hr{
+        background-color: #3b4f86;
+    }
+    .keySkills {
+    list-style-type: none;
+    column-count:3;
+    }
+    .personalinfo{
+        display:inline-block;
+        margin: 0 auto;
+    }
+    ul{
+        line-height: 130%;
+    }
+    Aside,section{
+        line-height: 120%;
+    }
+    .menu-container{
+    border-top:5px solid #3b4f86 ;
+    border-radius: 20px;
+    margin-top: 10px;
+    position: absolute;
+    margin-left: 30px;
+    padding: 5px;
+    box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+    }
+    button{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    }
+    .close-printbtn{
+    display: none;
+  }
+</style>
+   </head>
+   <body>
+    <main>
+         <!-- loader -->
+         <div class="ring">DEVGOAL<span class="loading"></span></div>
+
+        <div class="my-container ">
+         <page size = "A4" class="col-lg-11 col-md-11 col-sm-11 d-flex">
+            <Aside class="p-3 col-lg-4 col-md-4 col-sm-4 text-white">
+                <img src="https://www.w3schools.com/howto/img_avatar.png" alt="profile" class="center mb-3" >
+                <h5>Personal Info.</h5>            
+                <p class="personalinfo">เพศ: ชาย</p>
+                <p class="personalinfo">อายุ: 23ปี</p>
+                <hr class="bg-white">
+                <h5>Contact </h5>
+                <p><i class="fa-solid fa-location-dot"></i> ที่อยู่ : กรุงเทพมหานคร	เขตพระนคร	บางขุนพรหม	10200</p>
+                <p><i class="fa-solid fa-phone"></i> เบอร์โทร : 0894564259</p>
+                <p><i class="fa-solid fa-envelope"></i> อีเมล : Copypaste1886@gmail.com</p>
+                <hr class="bg-white">
+                <h5>ประวัติการศึกษา</h5>
+                <p>มัธยมศึกษา : โรงเรียนท่าขอนยางพิทยาคม</p>
+                <p>เกรดเฉลี่ย : 3.99</p>
+                <p>อุดมศึกษา : มหาวิทยาลัยมหาสารคาม</p>
+                <p>เกรดเฉลี่ย : 4.00</p>
+                <hr class="bg-white">
+                <h5>อาจารย์ที่ปรึกษา</h5>
+                <p>ดร.อัลเบิร์ต ไอน์สไตน์</p>
+            </p>
+            </Aside>
+            <section class="p-3 col-lg-8 col-lg-8 col-sm-8">
+            <h4>นายศักรินทร์ ดาวร้าย</h4>
+            <h6>ตำแน่ง: MobileDeveloper , Tester</h6><hr>
+            <h5>ความสามารถ / Skill</h5>
+            <ul class="keySkills " >
+                <li><i class="fa-solid fa-circle-dot"></i> Python</li>
+                <li><i class="fa-solid fa-circle-dot"></i> Java</li>
+                <li><i class="fa-solid fa-circle-dot"></i> Flutter</li>
+                <li><i class="fa-solid fa-circle-dot"></i> Dart</li>
+                <li><i class="fa-solid fa-circle-dot"></i> MariaDB</li>
+                <li><i class="fa-solid fa-circle-dot"></i> SQL</li>
+                <li><i class="fa-solid fa-circle-dot"></i> JavaScript</li>
+                <li><i class="fa-solid fa-circle-dot"></i> Lua</li>
+                <li><i class="fa-solid fa-circle-dot"></i> PHP</li>
+            </ul>
+            <h6>รายละเอียด</h6>
+           <p>เขียนได้หมดทุกภาษายกเว้นเขียนเรื่องราวชีวิตตัวเอง</p>
+           <hr>
+           <h5>ประสบการณ์ / Experience</h5>
+           <p>เคยทำเว็บให้กับมาร์กซัคเกอร์เบริก. เคยเขียนแผนผังจรวดนิวเครียร์.</p>
+           <hr>
+           <h5>โปรเจคที่เคยทำ / Project</h5>
+           <p>Facebook , Google , Youtube.</p>
+           <hr>
+           <h5>คำอธิบาย / About me</h5>
+           <p>I am a 20 year old aspiring photographer and digital artist I am currently studying at Far Eastern University - Institute of Technology taking Bachelor of Science in Information Technology Major in Digital Arts.</p>
+           <hr>
+           <h5>คติประจำใจ</h5>
+           <p>หัวใจพี่มีรอยช้ำ</p>
+        </section>
+        </page>
+    </div>
+    </main>
+    <!-- bootstrap js -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js" integrity="sha384-5h4UG+6GOuV9qXh6HqOLwZMY4mnLPraeTrjT5v07o347pj6IkfuoASuGBhfDsp3d" crossorigin="anonymous"></script>
+   </body>
+   <script>
+    function myFunction() {
+        window.print();
+    }
+ </script>
+<html>  
+

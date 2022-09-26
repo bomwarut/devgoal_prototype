@@ -1,0 +1,103 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ประวัติการเข้าสู่ระบบของนิสิตหรือนักศึกษา</title>
+    <meta name="theme-color" content="hsl(24.3, 97.4%, 54.3%)">
+    <link href="../image/devgoallogo.png" size="48x48" rel="shortcut icon"  type="image/png"/>
+    <link rel="stylesheet" href="../stylecss/style_user.css">
+</head>
+
+<body>
+    <main>  
+        <!-- loader -->
+        <div class="ring">DEVGOAL<span class="loading"></span></div>
+        <!-- import navbarและsidebarเข้ามา -->
+        <nav class="navbar navbar-expand d-flex flex-column " id="sidebar">
+          <include src="sidebar_admin.html"></include>
+        </nav>
+        <include src="navbar_admin.html"></include>
+  
+      <!-- เนื้อหา -->
+      <section class="p-4 my-container">
+          <button class="btn" id="menu-btn"><i class="fa-solid fa-list"></i></button>
+          <div class="table-container">
+            <div class="row abovetable "> 
+                <h4>ประวัติการเข้าสู่ระบบของนิสิตหรือนักศึกษา</h4>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                  <div class="dropdown">
+                    <label>เลือกประเภท</label>
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                      ประเภทผู้ใช้งาน
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-dark" id="dropdown_cate">
+                      <li><a class="dropdown-item" href="hisloginstu_admin.html">นิสิต/นักศึกษา</a></li>
+                      <li><a class="dropdown-item" href="hislogintea_admin.html">อาจารย์</a></li>
+                      <li><a class="dropdown-item" href="hisloginemp_admin.html">นายจ้าง</a></li>
+                  </ul>
+                    </div>
+                    </div>
+              <div class="col-sm-12 col-md-3 col-lg-3">
+              <div class="dropdown">
+                <label>เรียงลำดับจาก</label>
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                  เลือกลำดับ
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark" id="dropdown_cate">
+                  <li><a class="dropdown-item" href="#">เก่าสุด</a></li>
+                  <li><a class="dropdown-item" href="#">ใหม่สุด</a></li>
+                </ul>
+                </div>
+                </div>
+                <div class="col-sm-12 col-md-5 col-lg-5 pull-right">
+                  <form class="d-flex">
+                    <input class="form-control me-2" type="text" placeholder="Search">
+                    <button class="btn btn-secondary" type="button">ค้นหา</button>
+                  </form>
+                </div>
+                </div> 
+            <table class="table text-center">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ชื่อ - นามสกุล</th>
+                        <th>วันที่ และ เวลา</th>
+                        <th>Ip Address</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John</td>
+                        <td>2022-03-19 01:21:36</td>
+                        <td>49.48.115.153</td>
+                    </tr>
+                    <tr>
+                        <td>Mary</td>
+                        <td>2022-03-19 01:21:36</td>
+                        <td>49.48.115.153</td>
+                    </tr>
+                    <tr>
+                        <td>July</td>
+                        <td>2022-03-19 01:21:36</td>
+                        <td>49.48.115.153</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      </section>
+  </main>
+
+  <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="https://unpkg.com/htmlincludejs"></script>
+  <!-- bootstrap js -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js" integrity="sha384-5h4UG+6GOuV9qXh6HqOLwZMY4mnLPraeTrjT5v07o347pj6IkfuoASuGBhfDsp3d" crossorigin="anonymous"></script>
+  <!-- เปิดปิดsidebar -->
+  <script type="text/javascript" src="../js/sidebar.js"></script>
+  <script type="text/javascript" src="../js/load.js"></script>   
+</body>
+
+</html>

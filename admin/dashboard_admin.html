@@ -1,0 +1,263 @@
+<!-- <%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สถิติการเข้าสู่ระบบ</title>
+    <meta name="theme-color" content="hsl(24.3, 97.4%, 54.3%)">
+    <link href="../image/devgoallogo.png" size="48x48" rel="shortcut icon" type="image/png"/>
+    <link rel="stylesheet" href="../stylecss/style_user.css"> 
+    <link rel="stylesheet" href="../stylecss/classic.css">
+    <link rel="stylesheet" href="../stylecss/classic.date.css">
+    <style>
+      p{
+      font-size: 14px;
+      }
+      @media (max-width:765px){
+        .card{
+          text-align: center;
+        }
+      }
+    </style>
+</head>
+<body>
+        <main>  
+          <!-- loader -->
+          <div class="ring">DEVGOAL<span class="loading"></span></div>
+        <!-- import navbarและsidebarเข้ามา -->
+        <nav class="navbar navbar-expand d-flex flex-column " id="sidebar">
+          <include src="sidebar_admin.html"></include>
+        </nav>
+        <include src="navbar_admin.html"></include>
+
+          <!-- เนื้อหา -->  
+          <section class="p-4 my-container">
+              <button class="btn" id="menu-btn"><i class="fa-solid fa-list"></i></button>  
+                    <div class="row">
+                      <div class="col-lg-6 col-sm-12 col-md-12"> 
+                        <div class="card">
+                          <h4>DashBoard</h4>
+                          <div class="row p-3">
+                            <div class="col-lg-6 col-sm-12 col-md-12">
+                              <div class="form-group ">
+                                  <label for="input_from">จากวันที่</label>
+                                <input type="text" class="form-control" id="input_from" placeholder="Start Date">
+                              </div>
+                          </div>
+                          <div class="col-lg-6 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <label for="input_to">ถึงวันที่</label>
+                              <input type="text" class="form-control" id="input_to" placeholder="End Date">
+                            </div>
+                        </div>
+                          </div>
+                      </div>    
+                      </div> 
+                      <div class=" col-lg-2 col-sm-12 col-md-12">
+                        <div class="card">
+                          <div class="card-body">
+                            <div class="row gx-5">
+                              <div class="col-lg-2 col-md-4 col-sm-12 mb-3">
+                                <i class="fa-solid fa-user-xmark text-danger fa-2x"></i>
+                              </div>
+                              <div class="col-lg-10  col-md-4  col-sm-12">
+                                <p>ผู้ใช้ที่ยังไม่ยืนยันอีเมล</p>
+                              </div>
+                              <div class="col-lg-12  col-md-4 col-sm-12">
+                                <h4 id="">278คน</h4>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-2 col-sm-12 col-md-12">
+                        <div class="card ">
+                          <div class="card-body">
+                            <div class="row gx-5">
+                              <div class="col-lg-2 col-md-4 col-sm-12 mb-3">
+                                <i class="fa-solid fa-user-check text-success fa-2x"></i>
+                              </div>
+                              <div class="col-lg-10 col-md-4 col-sm-12">
+                                <p>  ผู้ใช้ที่ยืนยันแล้ว  </p>
+                              </div>
+                              <div class="col-lg-12 col-md-4 col-sm-12">
+                                <h4 id="">156คน</h4>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-2 col-sm-12 col-md-12">
+                        <div class="card ">
+                          <div class="card-body">
+                            <div class="row gx-5">
+                              <div class="col-lg-2 col-md-4 col-sm-12 mb-3">
+                                <i class="fa-solid fa-user-clock text-warning fa-2x"></i>
+                              </div>
+                              <div class="col-lg-10 col-md-4 col-sm-12" >
+                                <p>ผู้ใช้ที่รอการยืนยัน</p>
+                              </div>
+                              <div class="col-lg-12 col-md-4 col-sm-12">
+                                <h4 id="">150คน</h4>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-7 col-sm-12 col-md-12">
+                        <div class="card ">
+                          <div class="card-body">
+                              <canvas id="linechart"></canvas>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-5 col-sm-12 col-md-12">
+                        <div class="card">
+                          <div class="card-body" >
+                              <canvas id="donutChart"style="width:290px;height:216px;" ></canvas>
+                          </div>
+                        </div>
+                      </div>  
+                      <div class="container"style="width: 99.8%;" >
+                        <div class="card" >
+                          <div class="card-body">
+                              <canvas id="barChart" style=" height:50vh; width:80vw"></canvas>
+                          </div>
+                        </div>
+                      </div>
+                    </div> 
+          </section>
+      </main>
+      
+       <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/htmlincludejs"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+        <!-- bootstrap js -->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js" integrity="sha384-5h4UG+6GOuV9qXh6HqOLwZMY4mnLPraeTrjT5v07o347pj6IkfuoASuGBhfDsp3d" crossorigin="anonymous"></script>
+        <!-- เปิดปิดsidebar -->
+        <script type="text/javascript" src="../js/sidebar.js"></script>
+        <!-- datepicker -->
+        <script type="text/javascript" src="../js/picker.js"></script>
+        <script type="text/javascript" src="../js/picker.date.js"></script>
+        <script type="text/javascript" src="../js/main.js"></script>
+        <script type="text/javascript" src="../js/load.js"></script>
+</body>
+<script>
+  // Graph
+var ctx = document.getElementById("linechart");
+
+var linechart = new Chart(ctx, {
+  type: "line",
+  data: {
+    labels: [
+      "วันอาทิตย์",
+      "วันจันทร์",
+      "วันอังคาร",
+      "วันพุธ",
+      "วันพฤหัสบดี",
+      "วันศุกร์",
+      "วันเสาร์",
+    ],
+    datasets: [
+      {
+        data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
+        lineTension: 0,
+        backgroundColor: "transparent",
+        borderColor: "#007bff",
+        borderWidth: 4,
+        pointBackgroundColor: "#007bff",
+      },
+    ],
+  },
+  options: {
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: false,
+          },
+        },
+      ],
+    },
+    legend: {
+      display: false,
+    },
+    title: {
+      display: true,
+      text: "จำนวนผู้ใช้งานในแต่ละวัน"
+    }
+  }
+  },
+);
+
+// barChart
+var xValues = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฏาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
+var yValues = [24, 24, 24, 24, 15,24, 24, 24, 24, 15,24, 15];
+var barColors = [
+            "#b91d47",
+            "#00aba9",
+            "#2b5797",
+            "#e8c3b9",
+            "#1e7145",
+            "#b91d47",
+            "#00aba9",
+            "#2b5797",
+            "#e8c3b9",
+            "#1e7145",
+            "#e8c3b9",
+            "#1e7145"
+            ];
+
+new Chart("barChart", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "จำนวนสถิติผู้เข้าใช้งานเว็บไซต์รายปี"
+    }
+  }
+});
+
+// donutChart
+var aValues = ["นิสิต / นักศึกษา", "อาจารย์", "นายจ้าง", "ผู้ดูแลระบบ"];
+var bValues = [55, 49, 44, 24];
+var barColors = [
+            "#dc3545",
+            "#0d6efd",
+            "#ffc107",
+            "#252525",
+            ];
+
+new Chart("donutChart", {
+  type: "doughnut",
+  data: {
+    labels: aValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: bValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "จำนวนผู้ใช้งานของแต่ละประเภท"
+    }
+  }
+});
+
+
+
+</script>
+</html>
