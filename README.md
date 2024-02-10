@@ -1,1 +1,1 @@
-# devgoal_prototype UX / UX HTML CSS JS
+# devgoal_prototype UX / UI HTML CSS JS
